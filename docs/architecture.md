@@ -8,7 +8,7 @@
 
 - Live site (WordPress, until the domain is switched): https://q-guard.app
 - Repository: https://github.com/Q-LEAP/qguard-website
-- Hosting: GitHub Pages, served from `main` (root)
+- Hosting: GitHub Pages, deployed by `.github/workflows/pages.yml` on every push to `main` or `alternative`: `main` at the root, the `alternative` design proposal under `/alternative/`
 - Stack: static HTML, CSS, vanilla JavaScript. No build step is needed to serve or edit the site.
 
 The pages are the **original Elementor/StratusX markup** exported from the live site (2026-09-25), cleaned of every WordPress runtime dependency. Class names, `data-id` and `data-settings` attributes are kept on purpose: the stylesheet and the scripts rely on them, exactly as on WordPress. That is what makes the static site pixel-identical to the original.

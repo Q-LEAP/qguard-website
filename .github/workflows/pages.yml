@@ -1,0 +1,51 @@
+# Publishes main at the site root and the "alternative" design proposal
+# under /alternative/, in one GitHub Pages deployment.
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main, alternative]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+
+      - name: Check out alternative
+        uses: actions/checkout@v4
+        with:
+          ref: alternative
+          path: alternative
+
+      - name: Assemble site
+        run: |
+          mkdir -p site/alternative
+          rsync -a --exclude '.git*' --exclude tools --exclude 'assets/Ref UI' main/ site/
+          rsync -a --exclude '.git*' --exclude tools --exclude docs --exclude 'assets/Ref UI' alternative/ site/alternative/
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

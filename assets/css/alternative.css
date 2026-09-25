@@ -1,0 +1,198 @@
+/*
+ * Q-Guard "alternative" direction: shares Q-BOT's component language
+ * (glass navigation, bordered section pills, two-tone hero title, product
+ * stage with a lit grid, hairline cards with a cursor spotlight, round
+ * back-to-top) while keeping Q-Guard's own identity: violet, Lato, the
+ * wave hero, the page structure and every word of content.
+ * Q-BOT's teal/black map to Q-Guard's violet/midnight throughout.
+ * Loaded after main.css; remove the <link> to return to the 1:1 site.
+ */
+:root {
+  --qg-violet: #4a3beb;
+  --qg-violet-deep: #4440db;
+  --qg-lavender: #c9c4ff;
+  --qg-midnight: #0e0d2c;
+  --qg-midnight-deep: #09081f;
+  --qg-hairline: rgba(255, 255, 255, 0.08);
+  --qg-hairline-strong: rgba(201, 196, 255, 0.28);
+  --qg-ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------- Navigation (Q-BOT: dark glass bar, hairline, filled CTA) ---------- */
+header.banner.headhesive--clone {
+  background-color: rgba(14, 13, 44, 0.92) !important;
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  backdrop-filter: saturate(140%) blur(14px);
+  border-bottom: 1px solid var(--qg-hairline);
+  box-shadow: none;
+}
+/* Touch / phone-size screens get the solid header (theme rule): midnight instead of grey. */
+header.banner.dark-header[data-transparent-header="false"] {
+  background-color: var(--qg-midnight);
+  border-bottom: 1px solid var(--qg-hairline);
+}
+
+/* The theme draws its ghost button on the <li>; the filled button lives on the link. */
+header.banner .navbar-nav > li.th-accent,
+header.banner .navbar-nav > li.th-accent:hover {
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+}
+header.banner .navbar-nav > li.th-accent > a {
+  padding: 9px 20px !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  background-color: #fff;
+  color: var(--qg-violet-deep) !important;
+  font-weight: 700;
+  transition: background-color 0.25s var(--qg-ease-out), color 0.25s var(--qg-ease-out);
+}
+header.banner.headhesive--clone .navbar-nav > li.th-accent > a,
+header.banner[data-transparent-header="false"] .navbar-nav > li.th-accent > a {
+  background-color: var(--qg-violet);
+  color: #fff !important;
+}
+header.banner .navbar-nav > li.th-accent > a:hover,
+header.banner .navbar-nav > li.th-accent > a:focus-visible {
+  background-color: var(--qg-lavender);
+  color: var(--qg-midnight) !important;
+}
+header.banner .navbar-nav > li.th-accent > a::after { display: none !important; }
+header.banner .navbar-nav > li > a:focus-visible {
+  outline: 2px solid var(--qg-lavender);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ---------- Hero: Q-BOT two-tone title, Q-Guard violet ---------- */
+.elementor-19273 .elementor-element-a999b1a .qg-title-tone {
+  color: var(--qg-lavender);
+}
+
+/* ---------- Section pills (existing uppercase labels only) ---------- */
+.elementor-element-14b0e8b .elementor-heading-title,
+.elementor-element-22d4706 .elementor-heading-title,
+.elementor-element-60773fa .elementor-heading-title,
+.elementor-element-19d717bd .elementor-heading-title {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  line-height: 1.2;
+}
+/* Pills sit on light and dark backgrounds: the border follows the text colour,
+   softened so it frames the label instead of competing with it. */
+.elementor-element-14b0e8b .elementor-heading-title,
+.elementor-element-22d4706 .elementor-heading-title,
+.elementor-element-19d717bd .elementor-heading-title {
+  border-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+.elementor-element-60773fa .elementor-heading-title {
+  border-color: var(--qg-hairline-strong);
+  color: var(--qg-lavender);
+}
+
+/* ---------- Product stage: the dark "What Q-Guard does" block ---------- */
+/* One lit grid across the three stacked sections; main.js sets
+   --qg-stage-offset so the grid lines run continuously across them. */
+.qg-stage {
+  --qg-grid: 56px;
+  position: relative;
+  isolation: isolate;
+  background-color: var(--qg-midnight) !important;
+  background-image:
+    linear-gradient(rgba(201, 196, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 196, 255, 0.055) 1px, transparent 1px) !important;
+  background-size: var(--qg-grid) var(--qg-grid) !important;
+  background-position: center var(--qg-stage-offset, 0px) !important;
+}
+.qg-stage--first::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 520px;
+  z-index: -1;
+  background: radial-gradient(ellipse 50% 70% at 50% 0%, rgba(74, 59, 235, 0.45), transparent 70%);
+  pointer-events: none;
+}
+.qg-stage--last::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 160px;
+  z-index: -1;
+  background: linear-gradient(to bottom, transparent, var(--qg-midnight-deep));
+  pointer-events: none;
+}
+
+/* Cards: hairline border, Q-BOT radius, spotlight that follows the pointer. */
+.qg-stage .elementor-widget-wrap.elementor-element-populated:has(> .elementor-widget-themo-service-block) {
+  --qg-spot-x: 50%;
+  --qg-spot-y: 0%;
+  --qg-spot-opacity: 0;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--qg-hairline-strong) !important;
+  border-radius: 16px !important;
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 24px 60px -30px rgba(0, 0, 0, 0.6) !important;
+  transition: border-color 0.3s var(--qg-ease-out);
+}
+.qg-stage .elementor-widget-wrap.elementor-element-populated:has(> .elementor-widget-themo-service-block)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: var(--qg-spot-opacity);
+  background: radial-gradient(360px circle at var(--qg-spot-x) var(--qg-spot-y), rgba(74, 59, 235, 0.32), transparent 65%);
+  transition: opacity 0.3s var(--qg-ease-out);
+  pointer-events: none;
+}
+.qg-stage .elementor-widget-wrap.elementor-element-populated:has(> .elementor-widget-themo-service-block) > * {
+  position: relative;
+  z-index: 1;
+}
+.qg-stage .elementor-widget-wrap.elementor-element-populated:has(> .elementor-widget-themo-service-block):hover {
+  border-color: rgba(201, 196, 255, 0.55) !important;
+}
+.qg-stage .elementor-widget-themo-service-block .elementor-icon {
+  color: var(--qg-lavender) !important;
+}
+
+/* ---------- Footer (Q-BOT: near-black with hairlines), Q-Guard midnight ---------- */
+footer.footer {
+  background-color: var(--qg-midnight-deep) !important;
+  border-top: 1px solid var(--qg-hairline);
+}
+footer.footer .footer-btm-bar {
+  background-color: var(--qg-midnight-deep) !important;
+  border-top: 1px solid var(--qg-hairline);
+}
+footer.footer a:hover { color: var(--qg-lavender) !important; }
+
+/* ---------- Back to top (Q-BOT round button) ---------- */
+#scrollUp {
+  right: 24px !important;
+  bottom: 24px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border: 1px solid var(--qg-hairline-strong);
+  border-radius: 50% !important;
+  background-color: rgba(14, 13, 44, 0.85) !important;
+  color: var(--qg-lavender) !important;
+  opacity: 1 !important;
+  line-height: 42px !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  transition: background-color 0.25s var(--qg-ease-out), transform 0.25s var(--qg-ease-out);
+}
+#scrollUp:hover { background-color: var(--qg-violet) !important; color: #fff !important; }
+#scrollUp:focus-visible { outline: 2px solid var(--qg-lavender); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  header.banner .navbar-nav > li.th-accent > a,
+  .qg-stage .elementor-widget-wrap.elementor-element-populated,
+  .qg-stage .elementor-widget-wrap.elementor-element-populated::before,
+  #scrollUp { transition: none; }
+}

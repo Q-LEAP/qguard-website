@@ -595,7 +595,42 @@
       });
   }
 
+  /* ---------- Alternative direction: product stage (alternative.css) ---------- */
+  function initProductStage() {
+    const stages = [...document.querySelectorAll('.qg-stage')];
+    if (!stages.length) return;
+
+    // Stacked sections share one grid: shift each background by its distance
+    // from the first stage so the lines never break at section boundaries.
+    const alignGrid = () => {
+      const originTop = stages[0].getBoundingClientRect().top + window.scrollY;
+      stages.forEach(stage => {
+        const top = stage.getBoundingClientRect().top + window.scrollY;
+        stage.style.setProperty('--qg-stage-offset', `${Math.round(originTop - top)}px`);
+      });
+    };
+    alignGrid();
+    window.addEventListener('resize', alignGrid, { passive: true });
+    window.addEventListener('load', alignGrid);
+
+    const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!hasFinePointer || reduceMotion) return;
+    const cards = stages
+      .flatMap(stage => [...stage.querySelectorAll('.elementor-widget-wrap.elementor-element-populated')])
+      .filter(card => card.querySelector(':scope > .elementor-widget-themo-service-block'));
+    cards.forEach(card => {
+      card.addEventListener('pointermove', event => {
+        const bounds = card.getBoundingClientRect();
+        card.style.setProperty('--qg-spot-x', `${event.clientX - bounds.left}px`);
+        card.style.setProperty('--qg-spot-y', `${event.clientY - bounds.top}px`);
+        card.style.setProperty('--qg-spot-opacity', '1');
+      });
+      card.addEventListener('pointerleave', () => card.style.setProperty('--qg-spot-opacity', '0'));
+    });
+  }
+
   initBodyState();
+  initProductStage();
   initStickyHeader();
   initNavigation();
   initEntranceAnimations();

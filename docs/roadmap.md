@@ -26,11 +26,12 @@ Hand-written HTML/CSS reproduction. Superseded: it drifted from the live site (R
 - [ ] Remove `noindex` on the 6 pages, restore `max-image-preview:large`, add `CNAME` (`q-guard.app`), point DNS at GitHub Pages.
 - [ ] Check the reCAPTCHA widget on the real domain (site key is bound to q-guard.app).
 
-### Content issues inherited from the live site (reproduced 1:1, to fix on `dev`)
-- [ ] Homepage "Ready to level up your test automation?" → **Book a Demo** links to the StratusX theme page on ThemeForest.
-- [ ] StratusX demo placeholders still shown: client logos (Komodo, Las Santos Times, Info Daily, Tech Reviews) and iPhone mockups.
-- [ ] Footer "Follow us" LinkedIn link points to `https://www.linkedin.com/company` (no company page).
-- [ ] Homepage meta description starts with the video URL; Twitter title reads "Home G-Guard".
+### Content issues inherited from the live site — fixed 2026-09-25
+- [x] ThemeForest "Book a Demo" link: it was in a duplicate homepage CTA section hidden on every breakpoint (the visible CTA already used the Outlook booking link); emptied with the other hidden sections below.
+- [x] Footer "Follow us" LinkedIn → Q-Leap company page (`linkedin.com/company/3037496/`, as on q-leap.eu).
+- [x] Homepage meta description started with the video URL; Twitter title read "Home G-Guard".
+- [x] StratusX demo content (client logos, iPhone mockups, flexslider, two team photos) sat in Elementor sections hidden on every breakpoint. Their content is emptied and the images removed; the empty wrappers stay because Elementor's `:not(:last-child)` margins depend on them. No visual change (re-verified).
+- [ ] Still a theme illustration: `authentication_isometric-2.svg` in the homepage "for all testers" section — visible, replace if a Q-Guard visual exists.
 
 ### Later
 - [ ] Phase 2 "premium evolution" work: parked in `git stash` (`phase-2-premium WIP`), written against the old Phase 1 markup, so it has to be re-applied on the new markup.

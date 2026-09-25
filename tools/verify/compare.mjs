@@ -63,6 +63,7 @@ for (const [name, path] of Object.entries(PAGES)) {
     const diff = { height: [live.height, local.height], width: [live.width, local.width], boxes: [], styles: [] };
     for (const id of new Set([...Object.keys(live.boxes), ...Object.keys(local.boxes)])) {
       const a = live.boxes[id], b = local.boxes[id];
+      if (a && !b && a.every(v => v === 0)) continue; // never-rendered on live, removed locally
       if (!a || !b || a.some((v, i) => Math.abs(v - b[i]) > 1)) diff.boxes.push({ id, live: a, local: b });
     }
     const count = Math.max(live.styles.length, local.styles.length);

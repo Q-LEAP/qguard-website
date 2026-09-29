@@ -6301,3 +6301,47 @@ Domain Path:    /languages/
   height: 0;
   position: absolute;
 }
+
+/* Homepage hero calls to action (SEO plan, step 2). The WordPress hero button widget
+   (5f16e98) was hidden on every breakpoint; it is shown again with a second button.
+   Side padding matches the hero heading and lead paragraph (60px) so the buttons
+   line up with the text above. */
+.elementor-19273 .elementor-element.elementor-element-5f16e98 > .elementor-widget-container {
+  padding: 0 60px;
+}
+.elementor-19273 .elementor-element.elementor-element-5f16e98 .qg-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.elementor-19273 .elementor-element.elementor-element-5f16e98 .elementor-button {
+  color: #ffffff;
+}
+.elementor-19273 .elementor-element.elementor-element-5f16e98 .elementor-button.qg-button-secondary {
+  background-color: rgba(255, 255, 255, 0);
+  border-color: #ffffff;
+}
+.elementor-19273 .elementor-element.elementor-element-5f16e98 .elementor-button.qg-button-secondary:hover,
+.elementor-19273 .elementor-element.elementor-element-5f16e98 .elementor-button.qg-button-secondary:focus {
+  background-color: #ffffff;
+  color: #4440DB;
+}
+@media (max-width: 767px) {
+  .elementor-19273 .elementor-element.elementor-element-5f16e98 .elementor-button {
+    padding: 17px 24px;
+    white-space: nowrap;
+  }
+}
+
+/* FAQ semantics (SEO plan, step 8): categories are h2 and questions h3 instead of the
+   original h5 / div. These rules keep the original h5 and div rendering. */
+.elementor-20048 .elementor-heading-title.qg-faq-category {
+  font-size: 22px;
+}
+@media (max-width: 479px) {
+  .elementor-20048 .elementor-heading-title.qg-faq-category { font-size: 20px; }
+}
+.elementor-20048 .elementor-toggle h3.elementor-tab-title {
+  font-size: 14px;
+  color: #5C5C5C;
+}

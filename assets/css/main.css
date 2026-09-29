@@ -6345,3 +6345,24 @@ Domain Path:    /languages/
   font-size: 14px;
   color: #5C5C5C;
 }
+
+/* Content pages built from the Features template (How it works, Security & data,
+   Licence & trial): service block titles are h2 for the heading outline but keep
+   the h4 rendering of the Features page. */
+.th-service-block-w h2.elementor-icon-box-title {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+@media (max-width: 479px) {
+  .th-service-block-w h2.elementor-icon-box-title { font-size: 23px; }
+}
+
+/* French homepage: longer words than the English hero heading; hyphenate rather than
+   overflow the narrow mobile column. */
+@media (max-width: 767px) {
+  html[lang="fr"] .elementor-19273 .elementor-element.elementor-element-a999b1a .elementor-heading-title {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphenate-limit-chars: 10 4 4;
+  }
+}

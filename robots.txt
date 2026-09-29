@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# AI assistants that answer with the site as a source: allowed.
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+Allow: /
+
+# Training crawlers are allowed today. Uncomment to opt out of AI training.
+# (Google-Extended has no effect on Google Search or Google's AI Overviews.)
+# User-agent: GPTBot
+# User-agent: ClaudeBot
+# User-agent: CCBot
+# User-agent: Google-Extended
+# Disallow: /
+
+Sitemap: https://q-guard.app/sitemap.xml

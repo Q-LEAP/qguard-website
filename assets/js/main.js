@@ -299,6 +299,11 @@
     const links = [...document.querySelectorAll('a[data-elementor-open-lightbox="yes"]')];
     if (!links.length) return;
 
+    // WordPress rendered these strings in the site locale; follow the page language instead.
+    const lightboxLabels = document.documentElement.lang.startsWith('fr')
+      ? { fullscreen: 'Plein écran', share: 'Partager', facebook: 'Partager sur Facebook', twitter: 'Partager sur Twitter', pinterest: 'Épingler', download: 'Télécharger l’image', close: 'Fermer', previous: 'Précédent', next: 'Suivant' }
+      : { fullscreen: 'Fullscreen', share: 'Share', facebook: 'Share on Facebook', twitter: 'Share on Twitter', pinterest: 'Pin it', download: 'Download image', close: 'Close', previous: 'Previous', next: 'Next' };
+
     const overlay = document.createElement('div');
     overlay.className = 'qg-lightbox';
     overlay.setAttribute('role', 'dialog');
@@ -308,20 +313,20 @@
     overlay.innerHTML = `
       <div class="qg-lightbox__header">
         <span class="qg-lightbox__counter" aria-live="polite"></span>
-        <button type="button" class="qg-lightbox__tool qg-lightbox__fullscreen" aria-label="Plein écran"><i class="eicon-frame-expand" aria-hidden="true"></i></button>
+        <button type="button" class="qg-lightbox__tool qg-lightbox__fullscreen" aria-label="${lightboxLabels.fullscreen}"><i class="eicon-frame-expand" aria-hidden="true"></i></button>
         <button type="button" class="qg-lightbox__tool qg-lightbox__zoom" aria-label="Zoom"><i class="eicon-zoom-in-bold" aria-hidden="true"></i></button>
-        <button type="button" class="qg-lightbox__tool qg-lightbox__share" aria-label="Partager" aria-expanded="false"><i class="eicon-share-arrow" aria-hidden="true"></i></button>
+        <button type="button" class="qg-lightbox__tool qg-lightbox__share" aria-label="${lightboxLabels.share}" aria-expanded="false"><i class="eicon-share-arrow" aria-hidden="true"></i></button>
         <div class="qg-lightbox__share-links" hidden>
-          <a data-share="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook" aria-hidden="true"></i>Partager sur Facebook</a>
-          <a data-share="twitter" target="_blank" rel="noopener"><i class="fab fa-twitter" aria-hidden="true"></i>Partager sur Twitter</a>
-          <a data-share="pinterest" target="_blank" rel="noopener"><i class="fab fa-pinterest" aria-hidden="true"></i>Épingler</a>
-          <a data-share="download" download><i class="fas fa-download" aria-hidden="true"></i>Télécharger l’image</a>
+          <a data-share="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook" aria-hidden="true"></i>${lightboxLabels.facebook}</a>
+          <a data-share="twitter" target="_blank" rel="noopener"><i class="fab fa-twitter" aria-hidden="true"></i>${lightboxLabels.twitter}</a>
+          <a data-share="pinterest" target="_blank" rel="noopener"><i class="fab fa-pinterest" aria-hidden="true"></i>${lightboxLabels.pinterest}</a>
+          <a data-share="download" download><i class="fas fa-download" aria-hidden="true"></i>${lightboxLabels.download}</a>
         </div>
       </div>
-      <button type="button" class="qg-lightbox__close" aria-label="Fermer"><i class="eicon-close" aria-hidden="true"></i></button>
-      <button type="button" class="qg-lightbox__prev" aria-label="Précédent"><i class="eicon-chevron-left" aria-hidden="true"></i></button>
+      <button type="button" class="qg-lightbox__close" aria-label="${lightboxLabels.close}"><i class="eicon-close" aria-hidden="true"></i></button>
+      <button type="button" class="qg-lightbox__prev" aria-label="${lightboxLabels.previous}"><i class="eicon-chevron-left" aria-hidden="true"></i></button>
       <figure class="qg-lightbox__stage"><img class="qg-lightbox__image" alt="" /></figure>
-      <button type="button" class="qg-lightbox__next" aria-label="Suivant"><i class="eicon-chevron-right" aria-hidden="true"></i></button>
+      <button type="button" class="qg-lightbox__next" aria-label="${lightboxLabels.next}"><i class="eicon-chevron-right" aria-hidden="true"></i></button>
       <div class="qg-lightbox__footer"><div class="qg-lightbox__title"></div></div>`;
     document.body.appendChild(overlay);
     const image = overlay.querySelector('.qg-lightbox__image');

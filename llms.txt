@@ -1,0 +1,30 @@
+# Q-Guard
+
+> Q-Guard is a test automation tool by Q-Leap SA, a software testing company in
+> Luxembourg. It observes how real users move through a web application, anonymises
+> that data at the source, detects the journeys they repeat and turns them into test
+> cases and Selenium scripts (Java, C#, Ruby, Python). It is installed on the
+> customer's own servers under an annual licence that includes installation and support.
+
+## Product
+
+- [Home](https://q-guard.app/): what Q-Guard does and who it is for
+- [How it works](https://q-guard.app/how-it-works/): from real usage to test cases and Selenium scripts
+- [Features](https://q-guard.app/features/): test case generation, Selenium export, reports
+- [Security & data](https://q-guard.app/security-and-data/): on-premise storage, anonymisation at the source, GDPR
+- [Licence & trial](https://q-guard.app/licence-and-trial/): annual on-premise licence, installation, trial, support
+- [FAQ](https://q-guard.app/support-help-faq/): licence, installation, data, trial
+- [Q-Guard Test Runner](https://chromewebstore.google.com/detail/q-guard-test-runner/aefoifepleogeiicaclpdldfjppdpjbd): browser extension that runs Q-Guard test cases locally
+
+## Company
+
+- [About](https://q-guard.app/about-us/): the Q-Leap team behind Q-Guard
+- [Q-Leap](https://q-leap.eu/): software testing company, Bertrange, Luxembourg
+
+## Contact
+
+- [Contact and demo](https://q-guard.app/contact/): demo@q-guard.app, +352 20 21 17
+
+## Optional
+
+- [Page d'accueil en français](https://q-guard.app/fr/)

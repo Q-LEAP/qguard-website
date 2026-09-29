@@ -25,6 +25,12 @@ The pages are the **original Elementor/StratusX markup** exported from the live 
 ├── contact/index.html          Contact form + Google Maps embed
 ├── support-help-faq/index.html FAQ (toggle accordions)
 ├── privacy-policy/index.html   French privacy policy (theme page title visible)
+├── how-it-works/index.html     ┐
+├── security-and-data/index.html├ Content pages built from the Features template (2026-09-29)
+├── licence-and-trial/index.html┘
+├── fr/index.html               French homepage (hreflang pair with /)
+├── robots.txt, sitemap.xml     Crawl directives (AI answer bots allowed) and the page list
+├── llms.txt                    Site summary for AI assistants
 ├── assets/
 │   ├── css/main.css            Generated from the live CSS (see below), ~425 KB
 │   ├── js/main.js              Vanilla runtime replacing jQuery/Elementor/theme JS
@@ -93,7 +99,14 @@ The reCAPTCHA site key is bound to `q-guard.app`; on the github.io preview Googl
 
 ## SEO
 
-Each page keeps its original title, description, Open Graph and Twitter tags, and a canonical URL pointing at `https://q-guard.app/…`. Social images use absolute `https://q-guard.app/assets/images/…` URLs (valid once the domain is switched).
+Each page has a title (≤ 65 characters), a meta description (≤ 160), Open Graph and Twitter tags, and a canonical URL pointing at `https://q-guard.app/…`. Social images use absolute `https://q-guard.app/assets/images/…` URLs (valid once the domain is switched). Titles, descriptions and content were rewritten on 2026-09-29 following the SEO & GEO implementation plan (Roso SEO Squad, 2026-09-25).
+
+- `lang="en"` / `og:locale en_GB` on English pages; `lang="fr"` on the privacy policy and `/fr/`. `main.js` picks the lightbox labels from `<html lang>`.
+- Structured data: every page carries the same JSON-LD `@graph` (Q-Leap `Organization` + Q-Guard `SoftwareApplication`, with the Chrome Web Store extension in `sameAs`). The FAQ adds a `FAQPage` whose answers are the exact page text: **when a FAQ answer changes, update the JSON-LD too.** Add LinkedIn / G2 / YouTube profiles to `sameAs` when they exist.
+- `/` and `/fr/` declare each other with `hreflang` (+ `x-default`), also in `sitemap.xml`.
+- New pages must be added to `sitemap.xml`, `llms.txt`, the footer "Links" menu of every page and, if relevant, the header menu.
+- FAQ markup: categories are `h2.qg-faq-category`, questions are `h3.elementor-tab-title` (Elementor's "title tag" option); CSS at the end of `main.css` keeps the original h5/div rendering.
+- Content pages reuse the Features page (`elementor-19264`) widgets and CSS; their service block titles are `h2` rendered like the Features `h4`.
 
 **Staging:** every page currently has `<meta name="robots" content="noindex, nofollow" />` so the GitHub Pages preview is not indexed. When `q-guard.app` points at GitHub Pages, replace it on the 6 pages with the original `<meta name='robots' content='max-image-preview:large' />` and add a `CNAME` file containing `q-guard.app`.
 
@@ -106,5 +119,6 @@ Dev-only (never loaded by the site). Requires Node and Google Chrome; `npm insta
 - `compare.mjs` — layout/style diff (every Elementor element box + text styles) at 1920 / 1024 / 390px.
 - `pixel.mjs` — full-page pixel diff; screenshots and diff images in `tools/verify/shots/`.
 - `crop.mjs` — side-by-side crop of a region (live | local | diff).
+- `audit.mjs` — SEO/GEO checks on every page of `sitemap.xml`: status, `lang`, title/description length, single H1, JSON-LD validity, hreflang, empty/broken internal links, unsourced figures, stale content, horizontal overflow at 390 / 1024 / 1920px, console errors.
 
 Status at migration (2026-09-25): all 6 pages × 3 viewports have identical element geometry and computed styles; remaining pixel noise is image resampling (WordPress served CDN-resized copies) and carousel autoplay timing.

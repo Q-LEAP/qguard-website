@@ -1,0 +1,77 @@
+# Publishes a remote preview at https://q-leap.github.io/qguard-preview/:
+# dev at the root, the "alternative" design proposal under /alternative/.
+#
+# Why a second repository: once q-guard.app is set as this repository's
+# custom domain, q-leap.github.io/qguard-website/ redirects (301) to the
+# domain, so this repository can no longer serve a preview of its own.
+#
+# The preview is never indexed: every page gets noindex, robots.txt disallows
+# everything, and the CNAME file is dropped so the preview never claims the
+# real domain. The push uses a deploy key (secret PREVIEW_DEPLOY_KEY) that
+# can write to Q-LEAP/qguard-preview only.
+#
+# Runs on every push to dev. The alternative branch carries an older copy of
+# the workflows and does not trigger this one: after changing it, run this
+# workflow by hand (Actions > Deploy preview > Run workflow). The nightly run
+# catches up anyway.
+name: Deploy preview
+
+on:
+  push:
+    branches: [dev]
+  schedule:
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out dev
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          path: dev
+
+      - name: Check out alternative
+        uses: actions/checkout@v4
+        with:
+          ref: alternative
+          path: alternative
+
+      - name: Assemble preview
+        run: |
+          mkdir -p site/alternative
+          internal=(--exclude '.git*' --exclude tools --exclude docs --exclude 'assets/Ref UI' --exclude CLAUDE.md --exclude README.md --exclude CNAME)
+          rsync -a "${internal[@]}" dev/ site/
+          rsync -a "${internal[@]}" alternative/ site/alternative/
+          # One robots meta per page, always noindex.
+          find site -name '*.html' -print0 | xargs -0 perl -0pi -e \
+            's/<meta name=["\x27]robots["\x27][^>]*>\s*//g; s/<head>/<head>\n<meta name="robots" content="noindex, nofollow" \/>/'
+          printf 'User-agent: *\nDisallow: /\n' > site/robots.txt
+          touch site/.nojekyll
+          cd dev && echo "SOURCE_SHA=$(git rev-parse --short HEAD)" >> "$GITHUB_ENV"
+
+      - name: Push to Q-LEAP/qguard-preview
+        env:
+          DEPLOY_KEY: ${{ secrets.PREVIEW_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
+          cd site
+          git init -q -b main
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -q -m "Preview of qguard-website dev@${SOURCE_SHA}"
+          # The preview has no history of its own: each run replaces it.
+          git push -f git@github.com:Q-LEAP/qguard-preview.git main

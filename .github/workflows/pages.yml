@@ -1,10 +1,11 @@
-# Publishes main at the site root and the "alternative" design proposal
-# under /alternative/, in one GitHub Pages deployment.
+# Publishes main, and only main, as the production site (q-guard.app).
+# The work in progress (dev) and the "alternative" design proposal are
+# published separately, with noindex, by preview.yml.
 name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [main, alternative]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -29,17 +30,13 @@ jobs:
           ref: main
           path: main
 
-      - name: Check out alternative
-        uses: actions/checkout@v4
-        with:
-          ref: alternative
-          path: alternative
-
+      # Internal files (docs, verification tools, reference screenshots,
+      # project notes) are kept out of the public site.
       - name: Assemble site
         run: |
-          mkdir -p site/alternative
-          rsync -a --exclude '.git*' --exclude tools --exclude 'assets/Ref UI' main/ site/
-          rsync -a --exclude '.git*' --exclude tools --exclude docs --exclude 'assets/Ref UI' alternative/ site/alternative/
+          mkdir -p site
+          rsync -a --exclude '.git*' --exclude tools --exclude docs --exclude 'assets/Ref UI' \
+            --exclude CLAUDE.md --exclude README.md main/ site/
 
       - uses: actions/configure-pages@v5
 

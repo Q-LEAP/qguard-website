@@ -570,6 +570,22 @@
     });
   }
 
+  // Field names are Formidable's ("item_meta[9]"), meaningless in the email the
+  // form backend sends, so each value is keyed by its visible label instead.
+  // Hidden inputs starting with "_" are backend options (FormSubmit) and pass
+  // through; Formidable's frm_state, the honeypot and the reCAPTCHA token do not.
+  function formPayload(form) {
+    const payload = new FormData();
+    form.querySelectorAll('input[name^="item_meta"], textarea[name^="item_meta"]').forEach(input => {
+      if (input.classList.contains('frm_verify')) return;
+      const label = form.querySelector(`label[for="${input.id}"]`);
+      const key = (label ? label.textContent : input.placeholder).replace('*', '').trim();
+      payload.append(key || input.name, input.value.trim());
+    });
+    form.querySelectorAll('input[type="hidden"][name^="_"]').forEach(input => payload.append(input.name, input.value));
+    return payload;
+  }
+
   function submitForm(form, isSpam) {
     const endpoint = isSpam ? '' : form.dataset.endpoint;
     const done = () => {
@@ -585,7 +601,7 @@
     }
     const submitButton = form.querySelector('[type="submit"]');
     submitButton.disabled = true;
-    fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+    fetch(endpoint, { method: 'POST', body: formPayload(form), headers: { Accept: 'application/json' } })
       .then(response => {
         if (!response.ok) throw new Error(String(response.status));
         done();

@@ -41,10 +41,14 @@ Plan by Roso SEO Squad (2026-09-25), steps applicable to this repository:
 - [ ] Outside this repository: steps 3 (links from q-leap.eu), 5 (form inbox + Search Console), 11 (Chrome Web Store publisher name, G2), 12–13 (outreach, LinkedIn, Reddit, YouTube), 14 (monthly tracking).
 - [ ] Remaining Lighthouse items that would change the design: colour contrast (theme colours), heading order in theme widgets (h1 → h5/h6 eyebrows); toggle titles are `<a>` without `href` (Elementor markup).
 
-### Before switching the domain
-- [ ] Choose a form backend (Formspree, Web3Forms…) and set `data-endpoint` on `#form_2ssykv` (footer) and `#form_contact3` (contact).
-- [ ] Remove `noindex` on the 6 pages, restore `max-image-preview:large`, add `CNAME` (`q-guard.app`), point DNS at GitHub Pages.
-- [ ] Check the reCAPTCHA widget on the real domain (site key is bound to q-guard.app).
+### Domain switch (see `ovh-switch.md`)
+- [x] Form backend: FormSubmit → `contact@q-leap.eu` on both forms, privacy policy updated (2026-10-05).
+- [x] `noindex` lifted on every page, `max-image-preview:large` restored, `CNAME` added, `dev` merged into `main` (2026-10-05).
+- [x] Custom domain `q-guard.app` set on GitHub Pages; remote preview moved to `q-leap.github.io/qguard-preview/` (2026-10-05).
+- [ ] OVH: fill the DNS zone (site + Microsoft 365 mail records), then switch the name servers away from WordPress.com.
+- [ ] After the switch: HTTPS certificate + enforce HTTPS, FormSubmit activation email, reCAPTCHA on the real domain, mail in/out.
+- [ ] Renew the domain: it expires on 2026-11-07 (registrar OVH).
+- [ ] Privacy policy still says the hosting servers are "exclusively within the EU": GitHub Pages and FormSubmit are not (decision for Q-Leap).
 
 ### Content issues inherited from the live site — fixed 2026-09-25
 - [x] ThemeForest "Book a Demo" link: it was in a duplicate homepage CTA section hidden on every breakpoint (the visible CTA already used the Outlook booking link); emptied with the other hidden sections below.

@@ -6,9 +6,10 @@
 
 ## Overview
 
-- Live site (WordPress, until the domain is switched): https://q-guard.app
+- Production: https://q-guard.app, set as this repository's GitHub Pages custom domain on 2026-10-05. It still resolves to WordPress.com until the name servers are switched to OVH: see [ovh-switch.md](ovh-switch.md).
 - Repository: https://github.com/Q-LEAP/qguard-website
-- Hosting: GitHub Pages, deployed by `.github/workflows/pages.yml` on every push to `main` or `alternative`: `main` at the root, the `alternative` design proposal under `/alternative/`
+- Hosting: GitHub Pages, deployed by `.github/workflows/pages.yml` on every push to `main` (and only `main`; the `github-pages` environment accepts no other branch). Internal files (`docs/`, `tools/`, `assets/Ref UI/`, `CLAUDE.md`, `README.md`) are not published.
+- Remote preview: https://q-leap.github.io/qguard-preview/, `dev` at the root and the `alternative` design proposal under `/alternative/`, always `noindex`. Built by `.github/workflows/preview.yml` (every push to `dev`, nightly, or by hand) and pushed to the `Q-LEAP/qguard-preview` repository with a deploy key (secret `PREVIEW_DEPLOY_KEY`). A second repository is needed because a custom domain makes `q-leap.github.io/qguard-website/` redirect to it.
 - Stack: static HTML, CSS, vanilla JavaScript. No build step is needed to serve or edit the site.
 
 The pages are the **original Elementor/StratusX markup** exported from the live site (2026-09-25), cleaned of every WordPress runtime dependency. Class names, `data-id` and `data-settings` attributes are kept on purpose: the stylesheet and the scripts rely on them, exactly as on WordPress. That is what makes the static site pixel-identical to the original.
@@ -39,6 +40,8 @@ The pages are the **original Elementor/StratusX markup** exported from the live 
 │   ├── videos/                 Homepage hero video
 │   └── Ref UI/                 Reference screenshots (not used by the site)
 ├── tools/verify/               Dev-only regression checks against the live site
+├── tools/check-switch.sh       DNS/hosting checks before and after the OVH switch
+├── CNAME                       q-guard.app
 ├── docs/
 ├── .nojekyll                   Serve files as-is on GitHub Pages
 └── CLAUDE.md
@@ -91,7 +94,9 @@ External scripts: Swiper (`cdn.jsdelivr.net`), Google reCAPTCHA (only on pages w
 
 ### Forms
 
-GitHub Pages cannot process submissions. `submitForm` posts `FormData` to `form.dataset.endpoint` when a `data-endpoint` attribute is set on the `<form>`; without it the form only validates and shows the success message. **A form backend still has to be chosen** (e.g. Formspree, Web3Forms) and its URL set as `data-endpoint` on `#form_2ssykv` (footer, all pages) and `#form_contact3` (contact page).
+GitHub Pages cannot process submissions. Both forms (`#form_2ssykv` in the footer of every page, `#form_contact3` on the contact page) post to **FormSubmit**, `data-endpoint="https://formsubmit.co/ajax/contact@q-leap.eu"`, as on q-bot.eu (chosen 2026-10-05). `formPayload` keys each value by its visible label (the Formidable names `item_meta[n]` would be meaningless in the email) and passes the hidden `_subject`, `_captcha` and `_template` FormSubmit options; the honeypot, `frm_state` and the reCAPTCHA token are not sent. Without `data-endpoint` a form only validates and shows the success message.
+
+The first submission triggers a one-time activation email from FormSubmit to `contact@q-leap.eu`; nothing is forwarded until its link is clicked. FormSubmit is a processor outside the EU, named in the privacy policy.
 
 The reCAPTCHA site key is bound to `q-guard.app`; on the github.io preview Google shows a domain error inside the widget. That is expected.
 
@@ -108,7 +113,7 @@ Each page has a title (≤ 65 characters), a meta description (≤ 160), Open Gr
 - FAQ markup: categories are `h2.qg-faq-category`, questions are `h3.elementor-tab-title` (Elementor's "title tag" option); CSS at the end of `main.css` keeps the original h5/div rendering.
 - Content pages reuse the Features page (`elementor-19264`) widgets and CSS; their service block titles are `h2` rendered like the Features `h4`.
 
-**Staging:** every page currently has `<meta name="robots" content="noindex, nofollow" />` so the GitHub Pages preview is not indexed. When `q-guard.app` points at GitHub Pages, replace it on the 6 pages with the original `<meta name='robots' content='max-image-preview:large' />` and add a `CNAME` file containing `q-guard.app`.
+**Indexing:** since 2026-10-05 the pages carry the original `<meta name='robots' content='max-image-preview:large' />` (production is ready for the domain switch). The preview workflow replaces it with `noindex, nofollow` on every page and serves a `Disallow: /` robots.txt, so the preview is never indexed.
 
 ---
 

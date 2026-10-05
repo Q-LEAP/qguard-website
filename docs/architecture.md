@@ -6,7 +6,7 @@
 
 ## Overview
 
-- Production: https://q-guard.app, set as this repository's GitHub Pages custom domain on 2026-10-05. It still resolves to WordPress.com until the name servers are switched to OVH: see [ovh-switch.md](ovh-switch.md).
+- Production: https://q-guard.app, still WordPress.com. `main` is served at https://q-leap.github.io/qguard-website/ until the custom domain is set on the day of the switch: see [ovh-switch.md](ovh-switch.md).
 - Repository: https://github.com/Q-LEAP/qguard-website
 - Hosting: GitHub Pages, deployed by `.github/workflows/pages.yml` on every push to `main` (and only `main`; the `github-pages` environment accepts no other branch). Internal files (`docs/`, `tools/`, `assets/Ref UI/`, `CLAUDE.md`, `README.md`) are not published.
 - Remote preview: https://q-leap.github.io/qguard-preview/, `dev` at the root and the `alternative` design proposal under `/alternative/`, always `noindex`. Built by `.github/workflows/preview.yml` (every push to `dev`, nightly, or by hand) and pushed to the `Q-LEAP/qguard-preview` repository with a deploy key (secret `PREVIEW_DEPLOY_KEY`). A second repository is needed because a custom domain makes `q-leap.github.io/qguard-website/` redirect to it.

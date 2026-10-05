@@ -2,7 +2,7 @@
 
 Static version of [q-guard.app](https://q-guard.app), migrated off WordPress to GitHub Pages. HTML, CSS and vanilla JavaScript only.
 
-- **Production:** https://q-guard.app (`main`). The domain still points at WordPress.com until the switch described in [docs/ovh-switch.md](docs/ovh-switch.md).
+- **Production:** https://q-guard.app, still WordPress.com until the switch described in [docs/ovh-switch.md](docs/ovh-switch.md). Meanwhile `main` is at https://q-leap.github.io/qguard-website/.
 - **Preview:** https://q-leap.github.io/qguard-preview/ (`dev`, plus the `alternative` proposal under `/alternative/`, never indexed)
 - **Branches:** work on `dev`, merge into `main` when a change is done. `main` is what GitHub Pages publishes.
 

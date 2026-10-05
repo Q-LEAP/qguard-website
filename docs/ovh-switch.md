@@ -14,12 +14,26 @@
   le point qui compte : si ces enregistrements manquent dans la zone OVH au moment de la
   bascule, **les mails cessent d'arriver**.
 - Pas de DNSSEC publié au registre (aucun DS) : rien à défaire de ce côté.
-- GitHub Pages connaît déjà `q-guard.app` comme domaine du dépôt, la prod (`main`) est prête
-  (sans `noindex`, formulaires branchés sur FormSubmit).
+- La prod (`main`) est prête (sans `noindex`, formulaires branchés sur FormSubmit). Le domaine
+  `q-guard.app` **n'est volontairement pas posé** sur GitHub Pages pour l'instant : le poser fait
+  rediriger `q-leap.github.io/qguard-website/` vers `q-guard.app`, et cette adresse sert encore à
+  montrer le site (posé puis retiré le 2026-10-05 pour cette raison). C'est l'étape 1 ci-dessous.
 
-## Ce que tu fais chez OVH
+## La bascule
 
-### 1. Préparer la zone (sans effet tant que l'étape 2 n'est pas faite)
+### 1. Poser le domaine sur GitHub Pages (le jour J, juste avant OVH)
+
+```sh
+echo '{"cname":"q-guard.app"}' | gh api --method PUT repos/Q-LEAP/qguard-website/pages --input -
+gh workflow run pages.yml -R Q-LEAP/qguard-website --ref main
+```
+
+Le redéploiement est nécessaire : avec un déploiement par workflow, GitHub répond 404 sous le
+nouveau nom jusqu'au déploiement suivant. Le site en ligne (WordPress) n'est pas touché. À
+partir de là, `q-leap.github.io/qguard-website/` redirige vers `q-guard.app` ; l'aperçu à distance
+reste https://q-leap.github.io/qguard-preview/.
+
+### 2. Préparer la zone OVH (sans effet tant que l'étape 3 n'est pas faite)
 
 OVH → *Noms de domaine* → `q-guard.app` → onglet *Zone DNS*.
 S'il n'y a pas de zone, *Créer une zone DNS* (sans cocher « www »).
@@ -61,9 +75,9 @@ Puis vérifier depuis ce dépôt, avec un des serveurs OVH affichés dans l'ongl
 tools/check-switch.sh before dns109.ovh.net
 ```
 
-Tout doit être `ok`.
+Tout doit être `ok` (les trois premières lignes ne passent qu'une fois l'étape 1 faite).
 
-### 2. Basculer les serveurs de noms (le seul geste qui a un effet)
+### 3. Basculer les serveurs de noms (le seul geste qui a un effet)
 
 Onglet *Serveurs DNS* → *Modifier les serveurs DNS* → remplacer `ns1/ns2/ns3.wordpress.com` par
 les deux serveurs OVH (bouton *Réinitialiser la configuration DNS* / « utiliser les DNS OVH »).
@@ -75,7 +89,7 @@ la messagerie marche des deux côtés puisque les enregistrements sont identique
 **Ne rien supprimer chez WordPress.com pendant ce temps** — et plus tard non plus sans regarder :
 `q-leap.eu` y est aussi hébergé.
 
-### 3. Après la bascule
+### 4. Après la bascule
 
 ```sh
 tools/check-switch.sh after
@@ -113,8 +127,8 @@ tools/check-switch.sh after
   `alternative` sous `/alternative/`, jamais indexé. Publié par `.github/workflows/preview.yml`
   dans le dépôt `Q-LEAP/qguard-preview`, car `q-leap.github.io/qguard-website/` redirige
   désormais vers `q-guard.app`.
-- **Production** : https://q-guard.app (branche `main`), WordPress tant que l'étape 2 n'est pas
-  faite.
+- **Production** : https://q-guard.app (branche `main`), WordPress tant que l'étape 3 n'est pas
+  faite. D'ici l'étape 1, `main` est aussi visible sur https://q-leap.github.io/qguard-website/.
 
 ## Retour arrière
 

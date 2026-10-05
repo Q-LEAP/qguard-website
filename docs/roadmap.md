@@ -44,7 +44,8 @@ Plan by Roso SEO Squad (2026-09-25), steps applicable to this repository:
 ### Domain switch (see `ovh-switch.md`)
 - [x] Form backend: FormSubmit → `contact@q-leap.eu` on both forms, privacy policy updated (2026-10-05).
 - [x] `noindex` lifted on every page, `max-image-preview:large` restored, `CNAME` added, `dev` merged into `main` (2026-10-05).
-- [x] Custom domain `q-guard.app` set on GitHub Pages; remote preview moved to `q-leap.github.io/qguard-preview/` (2026-10-05).
+- [x] Remote preview that survives the custom domain: `q-leap.github.io/qguard-preview/` (2026-10-05).
+- [ ] Set the custom domain `q-guard.app` on GitHub Pages and redeploy, on the day of the switch (set then removed on 2026-10-05 so `q-leap.github.io/qguard-website/` stays usable for demos).
 - [ ] OVH: fill the DNS zone (site + Microsoft 365 mail records), then switch the name servers away from WordPress.com.
 - [ ] After the switch: HTTPS certificate + enforce HTTPS, FormSubmit activation email, reCAPTCHA on the real domain, mail in/out.
 - [ ] Renew the domain: it expires on 2026-11-07 (registrar OVH).

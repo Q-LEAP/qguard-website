@@ -92,6 +92,10 @@ tools/check-switch.sh after
   echo '{"cname":"q-guard.app"}' | gh api --method PUT repos/Q-LEAP/qguard-website/pages --input -
   ```
 
+  **Après chaque pose du domaine, relancer le déploiement** (`gh workflow run pages.yml -R
+  Q-LEAP/qguard-website --ref main`) : avec un déploiement par workflow, GitHub répond 404 sous
+  le nouveau nom jusqu'au déploiement suivant (constaté le 2026-10-05).
+
   Puis, certificat `approved` : `echo '{"https_enforced":true}' | gh api --method PUT repos/Q-LEAP/qguard-website/pages --input -`
 - **Formulaires** : envoyer un message depuis https://q-guard.app/contact/. Le premier envoi
   déclenche un courrier d'activation de FormSubmit à `contact@q-leap.eu` : cliquer le lien,

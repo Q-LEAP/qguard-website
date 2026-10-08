@@ -36,6 +36,7 @@ Plan by Roso SEO Squad (2026-09-25), steps applicable to this repository:
 - [x] Question-led sections (data flow, data captured, anonymisation, storage, performance, GDPR, deployment, FAQ), H1 with "security", "data privacy", "on-premise" and "test automation".
 - [x] Claims softened to what is published: "no impact on performance" → "designed to …, check it during a trial"; "GDPR compliance is a priority" → "designed with GDPR requirements in mind" + the four mechanisms.
 - [x] JSON-LD `WebPage` + `BreadcrumbList` + `FAQPage`; security CTA ("Book a security-focused demo" + "Read the FAQ"); `llms.txt` security section; visible focus on the page's links and CTA buttons.
+- [x] UI polish pass: trust-centre layout (zoned data-flow diagram, calmer table with a highlighted "user input" row and sideways scroll on mobile, removed → when → where → kept panel, numbered GDPR principles, dark CTA text for contrast on teal).
 
 ### Open decisions from the SEO plan (need business input)
 - [ ] SaaS status/date: the FAQ, `/licence-and-trial/` and the FAQPage JSON-LD say "planned; contact us for its current status".

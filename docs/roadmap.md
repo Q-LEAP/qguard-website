@@ -46,6 +46,7 @@ Plan by Roso SEO Squad (2026-09-25), steps applicable to this repository:
 - [ ] Privacy policy: registered office still "10 rue Mathias Hardt, L-1717 Luxembourg" (check the trade register before changing it); it also contains the Q-Bot Mobile app policy, copied from q-bot.eu.
 - [ ] Comparison page (Q-Guard vs Checksum, step 10): needs competitor facts verified at publication time.
 - [ ] Outside this repository: steps 3 (links from q-leap.eu), 5 (form inbox + Search Console), 11 (Chrome Web Store publisher name, G2), 12–13 (outreach, LinkedIn, Reddit, YouTube), 14 (monthly tracking).
+- [x] Call-to-action text on the teal background made dark (#1D2023) on About, Features, How it works, Licence & trial, FAQ and Security & data; the FAQ's outlined button follows (2026-10-08). The homepage CTA (white 40px/900 on #FF5264, ~3.2:1, large text) is left as is.
 - [ ] Remaining Lighthouse items that would change the design: colour contrast (theme colours), heading order in theme widgets (h1 → h5/h6 eyebrows); toggle titles are `<a>` without `href` (Elementor markup).
 
 ### Domain switch (see `ovh-switch.md`)

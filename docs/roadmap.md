@@ -32,10 +32,16 @@ Plan by Roso SEO Squad (2026-09-25), steps applicable to this repository:
 
 ## To do
 
+### Security & data page rework (2026-10-08)
+- [x] Question-led sections (data flow, data captured, anonymisation, storage, performance, GDPR, deployment, FAQ), H1 with "security", "data privacy", "on-premise" and "test automation".
+- [x] Claims softened to what is published: "no impact on performance" → "designed to …, check it during a trial"; "GDPR compliance is a priority" → "designed with GDPR requirements in mind" + the four mechanisms.
+- [x] JSON-LD `WebPage` + `BreadcrumbList` + `FAQPage`; security CTA ("Book a security-focused demo" + "Read the FAQ"); `llms.txt` security section; visible focus on the page's links and CTA buttons.
+
 ### Open decisions from the SEO plan (need business input)
 - [ ] SaaS status/date: the FAQ, `/licence-and-trial/` and the FAQPage JSON-LD say "planned; contact us for its current status".
 - [ ] Real proof points (customer, pilot, measured gain) to bring back figures: removed "90 %", "100 % customer satisfaction", "60 %"; "Easy to use. No coding skills required." still has no proof.
 - [ ] Security page: "Running without internet access" and "Who can see recorded journeys" sections left out (facts unknown). `operatingSystem` left out of the JSON-LD for the same reason.
+- [ ] Security page, facts still missing (2026-10-08): field-level inventory of a session (URLs, element selectors, timestamps, IP/user agent, user identifiers?), where the data collector runs, retention and deletion, access control/roles in Q-Guard, network flows to Q-Leap (licence, updates, support access), system requirements, measured performance overhead, any certification or pentest. The "less than one day" installation figure is a Q-Leap statement with no published evidence.
 - [ ] Privacy policy: registered office still "10 rue Mathias Hardt, L-1717 Luxembourg" (check the trade register before changing it); it also contains the Q-Bot Mobile app policy, copied from q-bot.eu.
 - [ ] Comparison page (Q-Guard vs Checksum, step 10): needs competitor facts verified at publication time.
 - [ ] Outside this repository: steps 3 (links from q-leap.eu), 5 (form inbox + Search Console), 11 (Chrome Web Store publisher name, G2), 12–13 (outreach, LinkedIn, Reddit, YouTube), 14 (monthly tracking).

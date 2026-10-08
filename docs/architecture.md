@@ -107,11 +107,12 @@ The reCAPTCHA site key is bound to `q-guard.app`; on the github.io preview Googl
 Each page has a title (≤ 65 characters), a meta description (≤ 160), Open Graph and Twitter tags, and a canonical URL pointing at `https://q-guard.app/…`. Social images use absolute `https://q-guard.app/assets/images/…` URLs (valid once the domain is switched). Titles, descriptions and content were rewritten on 2026-09-29 following the SEO & GEO implementation plan (Roso SEO Squad, 2026-09-25).
 
 - `lang="en"` / `og:locale en_GB` on English pages; `lang="fr"` on the privacy policy and `/fr/`. `main.js` picks the lightbox labels from `<html lang>`.
-- Structured data: every page carries the same JSON-LD `@graph` (Q-Leap `Organization` + Q-Guard `SoftwareApplication`, with the Chrome Web Store extension in `sameAs`). The FAQ adds a `FAQPage` whose answers are the exact page text: **when a FAQ answer changes, update the JSON-LD too.** Add LinkedIn / G2 / YouTube profiles to `sameAs` when they exist.
+- Structured data: every page carries the same JSON-LD `@graph` (Q-Leap `Organization` + Q-Guard `SoftwareApplication`, with the Chrome Web Store extension in `sameAs`). The FAQ adds a `FAQPage` whose answers are the exact page text: **when a FAQ answer changes, update the JSON-LD too.** `/security-and-data/` also adds `WebPage` (about the `SoftwareApplication`), `BreadcrumbList` and its own `FAQPage`, same rule. Add LinkedIn / G2 / YouTube profiles to `sameAs` when they exist.
 - `/` and `/fr/` declare each other with `hreflang` (+ `x-default`), also in `sitemap.xml`.
 - New pages must be added to `sitemap.xml`, `llms.txt`, the footer "Links" menu of every page and, if relevant, the header menu.
 - FAQ markup: categories are `h2.qg-faq-category`, questions are `h3.elementor-tab-title` (Elementor's "title tag" option); CSS at the end of `main.css` keeps the original h5/div rendering.
 - Content pages reuse the Features page (`elementor-19264`) widgets and CSS; their service block titles are `h2` rendered like the Features `h4`.
+- `/security-and-data/` (reworked 2026-10-08) keeps the Features hero and call to action but its body is hand-written semantic HTML (`.qg-security`: "On this page" links, question-led `h2` sections, data-flow `ol`, data `table`, anonymisation `dl`, visible FAQ `h3`/`p`), styled at the end of `main.css`. Every statement repeats a fact already published on the site; unknown facts are left out (see roadmap).
 
 **Indexing:** since 2026-10-05 the pages carry the original `<meta name='robots' content='max-image-preview:large' />` (production is ready for the domain switch). The preview workflow replaces it with `noindex, nofollow` on every page and serves a `Disallow: /` robots.txt, so the preview is never indexed.
 

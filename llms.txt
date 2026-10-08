@@ -11,10 +11,19 @@
 - [Home](https://q-guard.app/): what Q-Guard does and who it is for
 - [How it works](https://q-guard.app/how-it-works/): from real usage to test cases and Selenium scripts
 - [Features](https://q-guard.app/features/): test case generation, Selenium export, reports
-- [Security & data](https://q-guard.app/security-and-data/): on-premise storage, anonymisation at the source, GDPR
+- [Security & data](https://q-guard.app/security-and-data/): data flow, what is captured and stored, anonymisation at the source, on-premise storage, GDPR, deployment
 - [Licence & trial](https://q-guard.app/licence-and-trial/): annual on-premise licence, installation, trial, support
 - [FAQ](https://q-guard.app/support-help-faq/): licence, installation, data, trial
 - [Q-Guard Test Runner](https://chromewebstore.google.com/detail/q-guard-test-runner/aefoifepleogeiicaclpdldfjppdpjbd): browser extension that runs Q-Guard test cases locally
+
+## Security and data handling
+
+- Deployment: on-premise only today, installed on the customer's own servers by the Q-Leap team; a hosted SaaS version is planned.
+- Captured: sequences of user actions in the web application (sessions), in production or test environments.
+- Anonymisation: the Q-Guard data collector drops every value users type before anything is stored; only the user journey is kept.
+- Storage: user journeys, usage patterns, test cases, Selenium scripts and reports are stored on the customer's servers. No sensitive data is stored on Q-Leap's side.
+- GDPR: designed with GDPR requirements in mind (data minimisation, anonymisation at the source, storage on customer infrastructure). It does not by itself make the customer's processing compliant.
+- Installation: included in the annual licence, typically less than one day; a trial on the customer's own application is available.
 
 ## Company
 

@@ -6693,6 +6693,7 @@ Domain Path:    /languages/
   vertical-align: top;
 }
 .qg-table tbody tr:last-child > * { border-bottom: 0; }
+.qg-table tr > :last-child { white-space: nowrap; }
 .qg-table thead th {
   padding-top: 14px;
   padding-bottom: 12px;
@@ -6793,6 +6794,10 @@ Domain Path:    /languages/
   gap: 64px;
 }
 .qg-ops .qg-security__heading { align-items: flex-start; }
+@media (min-width: 1025px) {
+  /* Both titles reserve two lines so the two columns start their text at the same height. */
+  .qg-ops .qg-security__heading { min-height: 62px; }
+}
 .qg-ops .qg-security__title { font-size: 22px; padding-top: 6px; }
 .qg-ops .qg-security__icon { width: 40px; height: 40px; font-size: 17px; }
 .qg-ops .qg-security__answer { font-size: 16px; margin-bottom: 15px; }
@@ -6847,7 +6852,7 @@ Domain Path:    /languages/
 /* Call to action (this page only): more air, equal buttons, dark text for contrast on teal */
 .qg-security-cta > .elementor-container { padding: 48px 20px; }
 .qg-security-cta .th-cta-text { display: block; }
-.qg-security-cta .th-cta .th-cta-text span {
+.elementor-19264 .qg-security-cta .elementor-element.elementor-element-o9cuy6j .th-cta-text span {
   display: block;
   margin: 0 0 22px;
   font-size: 26px;
@@ -6938,7 +6943,7 @@ Domain Path:    /languages/
   .qg-facts__item--kept { border-radius: 0 0 5px 5px; }
   .qg-principles { grid-template-columns: 1fr; }
   .qg-faq { grid-template-columns: 1fr; }
-  .qg-security-cta .th-cta .th-cta-text span { font-size: 22px; }
+  .elementor-19264 .qg-security-cta .elementor-element.elementor-element-o9cuy6j .th-cta-text span { font-size: 22px; }
   .qg-security-cta .th-cta .th-btn { width: 100%; max-width: 360px; padding: 14px 20px; font-size: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {

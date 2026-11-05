@@ -6,11 +6,11 @@
 <title>Q-Guard security and data privacy: on-premise test automation</title>
 <meta name='robots' content='max-image-preview:large' />
 <meta name="google-site-verification" content="v4WpWKIWD9j6FqzTJwfpg99kW1VIHUwOTy4-uyuuVHs" />
-<meta name="description" content="How Q-Guard handles data: user input is anonymised at the source, only user journeys are kept, and everything is stored on your own servers." />
+<meta name="description" content="How Q-Guard handles data: passwords are always masked, user input can be anonymised, and everything is stored on your own servers." />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Q-Guard security and data privacy: on-premise test automation" />
 <meta property="og:url" content="https://q-guard.app/security-and-data/" />
-<meta property="og:description" content="How Q-Guard handles data: user input is anonymised at the source, only user journeys are kept, and everything is stored on your own servers." />
+<meta property="og:description" content="How Q-Guard handles data: passwords are always masked, user input can be anonymised, and everything is stored on your own servers." />
 <meta property="og:site_name" content="Q-Guard " />
 <meta property="og:image" content="https://q-guard.app/assets/images/imac-mockup-with-a-backdrop-a12634-2.png" />
 <meta property="og:image:width" content="1920" />
@@ -54,13 +54,12 @@
    "name": "Q-Guard",
    "url": "https://q-guard.app/",
    "applicationCategory": "DeveloperApplication",
-   "description": "Q-Guard observes how real users move through a web application, anonymises that data at the source and turns the journeys they repeat into test cases and Selenium scripts in Java, C#, Ruby or Python. Installed on the customer's own servers.",
+   "description": "Q-Guard observes how real users move through a web application and turns the journeys they repeat into test cases and test scripts for Selenium (Java, C#, Python, JavaScript), Robot Framework or Playwright (TypeScript). Installed on the customer's own servers.",
    "featureList": [
     "Test cases generated from real user journeys",
-    "Selenium script export in Java, C#, Ruby and Python",
+    "Test script export: Selenium (Java, C#, Python, JavaScript), Robot Framework, Playwright (TypeScript)",
     "On-premise installation, data kept on the customer's servers",
-    "Anonymisation at the source",
-    "CI integration"
+    "Password masking, optional anonymisation of user input"
    ],
    "publisher": {
     "@id": "https://q-leap.eu/#organization"
@@ -74,7 +73,7 @@
    "@id": "https://q-guard.app/security-and-data/#webpage",
    "url": "https://q-guard.app/security-and-data/",
    "name": "Q-Guard security and data privacy: on-premise test automation",
-   "description": "How Q-Guard handles data: user input is anonymised at the source, only user journeys are kept, and everything is stored on your own servers.",
+   "description": "How Q-Guard handles data: passwords are always masked, user input can be anonymised, and everything is stored on your own servers.",
    "inLanguage": "en-GB",
    "about": {
     "@id": "https://q-guard.app/#software"
@@ -117,7 +116,7 @@
      "name": "What data does Q-Guard collect?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Q-Guard collects the sequences of actions users perform in your web application, called sessions. It does not keep the values users type: its data collector drops them before storage and keeps only the user journey."
+      "text": "Q-Guard collects the sequences of actions users perform in your web application, called sessions. Everything it stores stays on your own servers."
      }
     },
     {
@@ -125,7 +124,7 @@
      "name": "Does Q-Guard record what users type?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "No. Each value a user types during a session is dropped by the Q-Guard data collector before anything is stored. Q-Guard keeps the sequence of actions, not the content of the inputs."
+      "text": "Passwords are always masked by the Q-Guard data collector. Anonymisation can also be enabled for an application: every value users type is then anonymised."
      }
     },
     {
@@ -157,7 +156,7 @@
      "name": "Is Q-Guard designed for GDPR requirements?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Yes. Q-Guard is designed with GDPR requirements in mind: it minimises the data it keeps, anonymises user input at the source and stores its data on your own servers. Assessing the compliance of your processing remains the responsibility of your organisation."
+      "text": "Yes. Q-Guard is designed with GDPR requirements in mind: it minimises the data it keeps, always masks passwords, can anonymise all user input and stores its data on your own servers. Assessing the compliance of your processing remains the responsibility of your organisation."
      }
     },
     {
@@ -231,8 +230,8 @@
         <div class="elementor-icon-box-wrapper ">
                             <div class="elementor-icon-box-content">
                     <h1 class="elementor-icon-box-title">Security and data privacy for <span class="qg-nowrap">on-premise</span> test automation</h1>
-                                        <p class="elementor-icon-box-description">Q-Guard turns the journeys real users take through your web application into automated tests, without keeping what they type.</p>
-                    <ul class="qg-hero-facts" aria-label="Key facts"><li>Installed on-premise, on your own servers</li><li>User input anonymised at the source, before storage</li><li>Only user journeys are kept</li><li>No sensitive data stored on Q-Leap&#8217;s side</li></ul>
+                                        <p class="elementor-icon-box-description">Q-Guard turns the journeys real users take through your web application into automated tests.</p>
+                    <ul class="qg-hero-facts" aria-label="Key facts"><li>Installed on-premise, on your own servers</li><li>Passwords masked, user input anonymisation available</li><li>Only user journeys are kept</li><li>No sensitive data stored on Q-Leap&#8217;s side</li></ul>
                                     </div>
             </div>
         </div>
@@ -264,21 +263,21 @@
 <span class="qg-security__icon" aria-hidden="true"><i class="far fa-eye"></i></span>
 <h2 class="qg-security__title" id="data-flow-title">How does Q-Guard protect your data?</h2>
 </div>
-<p class="qg-security__answer">Q-Guard keeps the path users take through your application, not the values they enter. User input is removed in the data collector before anything is stored, and what remains is stored on your own servers.</p>
+<p class="qg-security__answer">Q-Guard records the path users take through your application. Passwords are always masked, all user input can be anonymised, and what Q-Guard keeps is stored on your own servers.</p>
 <div class="qg-flow">
 <div class="qg-flow__zone qg-flow__zone--source">
 <p class="qg-flow__zone-label">At the source</p>
 <ol class="qg-flow__steps">
 <li class="qg-flow__step"><span class="qg-flow__name"><span class="qg-flow__num" aria-hidden="true">1</span>Your users</span><span class="qg-flow__text">use your web application, in production or in a test environment.</span></li>
 <li class="qg-flow__step"><span class="qg-flow__name"><span class="qg-flow__num" aria-hidden="true">2</span>Data collector</span><span class="qg-flow__text">records each visit as a session: the sequence of actions a user performs.</span></li>
-<li class="qg-flow__step qg-flow__step--key"><span class="qg-flow__name"><span class="qg-flow__num" aria-hidden="true">3</span>Anonymisation</span><span class="qg-flow__text">the collector drops every value users type, before anything is stored.</span></li>
+<li class="qg-flow__step qg-flow__step--key"><span class="qg-flow__name"><span class="qg-flow__num" aria-hidden="true">3</span>Masking</span><span class="qg-flow__text">the collector always masks passwords; with anonymisation enabled, every value users type is anonymised.</span></li>
 </ol>
 </div>
 <div class="qg-flow__zone qg-flow__zone--servers">
 <p class="qg-flow__zone-label">On your servers</p>
 <ol class="qg-flow__steps" start="4">
-<li class="qg-flow__step"><span class="qg-flow__name"><span class="qg-flow__num" aria-hidden="true">4</span>User journeys</span><span class="qg-flow__text">the anonymised sequences of actions are stored on your servers.</span></li>
-<li class="qg-flow__step"><span class="qg-flow__name"><span class="qg-flow__num" aria-hidden="true">5</span>Test cases</span><span class="qg-flow__text">Q-Guard detects repeated journeys and generates test cases and Selenium scripts from them.</span></li>
+<li class="qg-flow__step"><span class="qg-flow__name"><span class="qg-flow__num" aria-hidden="true">4</span>User journeys</span><span class="qg-flow__text">the sequences of actions are stored on your servers.</span></li>
+<li class="qg-flow__step"><span class="qg-flow__name"><span class="qg-flow__num" aria-hidden="true">5</span>Test cases</span><span class="qg-flow__text">Q-Guard detects repeated journeys and generates test cases and test scripts from them.</span></li>
 </ol>
 </div>
 </div>
@@ -291,7 +290,7 @@
 <span class="qg-security__icon" aria-hidden="true"><i class="far fa-file-code"></i></span>
 <h2 class="qg-security__title" id="data-captured-title">What data does Q-Guard capture?</h2>
 </div>
-<p class="qg-security__answer">Q-Guard captures sequences of user actions, called sessions. It does not keep the values users type, and everything it stores stays on your servers.</p>
+<p class="qg-security__answer">Q-Guard captures sequences of user actions, called sessions. Everything it stores stays on your servers.</p>
 <div class="qg-table-wrap" role="region" aria-labelledby="data-table-caption" tabindex="0">
 <table class="qg-table">
 <caption id="data-table-caption">Data handled by Q-Guard</caption>
@@ -299,10 +298,10 @@
 <tr><th scope="col">Data</th><th scope="col">Recorded</th><th scope="col">Kept</th><th scope="col">Stored on</th></tr>
 </thead>
 <tbody>
-<tr><th scope="row">Sequences of user actions (sessions)</th><td>Yes</td><td>Yes, as anonymised user journeys</td><td>Your servers</td></tr>
-<tr class="qg-table__row--key"><th scope="row">Values users type (user input)</th><td>No, dropped by the data collector</td><td>No</td><td>Not stored</td></tr>
+<tr><th scope="row">Sequences of user actions (sessions)</th><td>Yes</td><td>Yes, as user journeys</td><td>Your servers</td></tr>
+<tr class="qg-table__row--key"><th scope="row">Values users type (user input)</th><td>Yes, passwords always masked</td><td>Anonymised when enabled for the application</td><td>Your servers</td></tr>
 <tr><th scope="row">Usage patterns (sequences of action types)</th><td>Derived from user journeys</td><td>Yes</td><td>Your servers</td></tr>
-<tr><th scope="row">Test cases and Selenium scripts</th><td>Generated by Q-Guard</td><td>Yes</td><td>Your servers</td></tr>
+<tr><th scope="row">Test cases and test scripts</th><td>Generated by Q-Guard</td><td>Yes</td><td>Your servers</td></tr>
 <tr><th scope="row">Test reports and dashboard</th><td>Generated by Q-Guard</td><td>Yes</td><td>Your servers</td></tr>
 </tbody>
 </table>
@@ -316,12 +315,12 @@
 <span class="qg-security__icon" aria-hidden="true"><i class="fasth-linea icon-basic-lock"></i></span>
 <h2 class="qg-security__title" id="anonymisation-title">How does Q-Guard anonymise user input?</h2>
 </div>
-<p class="qg-security__answer">In the data collector, at the moment of capture: each value a user types during a session is dropped before anything is stored, and only the user journey is retained.</p>
+<p class="qg-security__answer">In the data collector, at the moment of capture. Passwords are always masked; anonymisation of every other input is an option you enable for each application.</p>
 <dl class="qg-facts">
-<div class="qg-facts__item qg-facts__item--removed"><dt>What is removed</dt><dd>Every user input from the session: the values users type into your application.</dd></div>
-<div class="qg-facts__item"><dt>When</dt><dd>Upstream, before any data is stored.</dd></div>
-<div class="qg-facts__item"><dt>Where</dt><dd>In the Q-Guard data collector, at the source.</dd></div>
-<div class="qg-facts__item qg-facts__item--kept"><dt>What is kept</dt><dd>The user journey: the sequence of actions, which Q-Guard uses to detect repeated usage and generate test cases.</dd></div>
+<div class="qg-facts__item qg-facts__item--removed"><dt>By default</dt><dd>Passwords are masked.</dd></div>
+<div class="qg-facts__item"><dt>Optional</dt><dd>Anonymisation of user input, enabled for each application.</dd></div>
+<div class="qg-facts__item"><dt>When enabled</dt><dd>Every value users type is anonymised.</dd></div>
+<div class="qg-facts__item qg-facts__item--kept"><dt>Always kept</dt><dd>The user journey: the sequence of actions, which Q-Guard uses to detect repeated usage and generate test cases.</dd></div>
 </dl>
 </div>
 </section>
@@ -344,8 +343,8 @@
 </div>
 <p class="qg-security__answer">Q-Guard is designed with GDPR requirements in mind. It does not make your processing compliant on its own; it reduces the personal data involved in test automation through four mechanisms.</p>
 <ul class="qg-principles">
-<li><strong>Data minimisation.</strong> Only the sequence of actions is kept; the values users type are not.</li>
-<li><strong>Anonymisation at the source.</strong> User input is removed in the data collector, before storage.</li>
+<li><strong>Data minimisation.</strong> Q-Guard works from the sequences of actions users perform.</li>
+<li><strong>Masking and anonymisation at the source.</strong> Passwords are always masked in the data collector; anonymisation of all user input can be enabled for each application.</li>
 <li><strong>Storage location.</strong> Q-Guard data is stored on your own servers, not by Q-Leap.</li>
 <li><strong>Customer-controlled infrastructure.</strong> Q-Guard data sits on infrastructure you operate, under the access, backup and retention rules you already apply to it.</li>
 </ul>
@@ -384,11 +383,11 @@
 <div class="qg-faq">
 <div class="qg-faq__item">
 <h3 class="qg-faq__question">What data does Q-Guard collect?</h3>
-<p>Q-Guard collects the sequences of actions users perform in your web application, called sessions. It does not keep the values users type: its data collector drops them before storage and keeps only the user journey.</p>
+<p>Q-Guard collects the sequences of actions users perform in your web application, called sessions. Everything it stores stays on your own servers.</p>
 </div>
 <div class="qg-faq__item">
 <h3 class="qg-faq__question">Does Q-Guard record what users type?</h3>
-<p>No. Each value a user types during a session is dropped by the Q-Guard data collector before anything is stored. Q-Guard keeps the sequence of actions, not the content of the inputs.</p>
+<p>Passwords are always masked by the Q-Guard data collector. Anonymisation can also be enabled for an application: every value users type is then anonymised.</p>
 </div>
 <div class="qg-faq__item">
 <h3 class="qg-faq__question">Where is Q-Guard data stored?</h3>
@@ -404,7 +403,7 @@
 </div>
 <div class="qg-faq__item">
 <h3 class="qg-faq__question">Is Q-Guard designed for GDPR requirements?</h3>
-<p>Yes. Q-Guard is designed with GDPR requirements in mind: it minimises the data it keeps, anonymises user input at the source and stores its data on your own servers. Assessing the compliance of your processing remains the responsibility of your organisation.</p>
+<p>Yes. Q-Guard is designed with GDPR requirements in mind: it minimises the data it keeps, always masks passwords, can anonymise all user input and stores its data on your own servers. Assessing the compliance of your processing remains the responsibility of your organisation.</p>
 </div>
 <div class="qg-faq__item">
 <h3 class="qg-faq__question">Does Q-Guard slow down my application?</h3>
